@@ -5,7 +5,7 @@ name: CI
 # the image, and no job publishes DOCKERHUB.md. Before this filter a README edit
 # ran the full build, test, vulncheck and lint, and then republished
 # eniz1806/vaults3:latest, handing every `:latest` user a new image digest for a
-# change to a sentence. The docs now live in docs/ as separate files, so doc-only
+# change to a sentence. The docs now live in upstream-docs/ as separate files, so doc-only
 # commits are common rather than rare.
 #
 # Kept deliberately narrow: only prose and images. deploy/ is NOT excluded, since
@@ -25,7 +25,7 @@ on:
     # identical.
     paths-ignore:
       - '**.md'
-      - 'docs/**'
+      - 'upstream-docs/**'
       - 'assets/**'
       - '.github/ISSUE_TEMPLATE/**'
       - 'LICENSE'
@@ -35,7 +35,7 @@ on:
     branches: [main]
     paths-ignore:
       - '**.md'
-      - 'docs/**'
+      - 'upstream-docs/**'
       - 'assets/**'
       - '.github/ISSUE_TEMPLATE/**'
       - 'LICENSE'

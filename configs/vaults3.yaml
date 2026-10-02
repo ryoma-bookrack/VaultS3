@@ -68,7 +68,7 @@ encryption:
   # Per-bucket encryption: with per_bucket true, `key` becomes the master KEK that
   # wraps a distinct data key per bucket, and a bucket is encrypted only after it
   # opts in (PUT /{bucket}?encryption). Different tenants get non-shared keys; opt-out
-  # buckets stay plaintext. See docs/design/per-bucket-encryption.md.
+  # buckets stay plaintext. See upstream-docs/design/per-bucket-encryption.md.
   per_bucket: false
   # legacy_key: previous server-wide key (hex), kept readable when switching to
   # per_bucket. Optional.
@@ -346,7 +346,7 @@ cluster:
   #
   # Above 1, object metadata is split across that many independent Raft groups
   # and each node holds only the shards it is a member of, so metadata capacity
-  # grows with the cluster. Read docs/design/sharded-metadata.md first:
+  # grows with the cluster. Read upstream-docs/design/sharded-metadata.md first:
   #   - the shard count is FIXED when the cluster first commits its assignment,
   #     because buckets hash to a shard. There is no resharding.
   #   - it cannot be turned on for a cluster that already holds object metadata.

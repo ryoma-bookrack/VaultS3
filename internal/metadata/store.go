@@ -175,7 +175,7 @@ type BucketLambdaConfig struct {
 type BucketEncryptionConfig struct {
 	SSEAlgorithm string `json:"sse_algorithm"` // "AES256" or "aws:kms"
 	KMSKeyID     string `json:"kms_key_id,omitempty"`
-	// Per-bucket envelope encryption (see docs/design/per-bucket-encryption.md).
+	// Per-bucket envelope encryption (see upstream-docs/design/per-bucket-encryption.md).
 	// KeyVersion is the current data-key version (0 = no per-bucket key); WrappedDEKs
 	// maps each version to its KEK-wrapped data key. Only wrapped keys are stored.
 	KeyVersion  int            `json:"key_version,omitempty"`

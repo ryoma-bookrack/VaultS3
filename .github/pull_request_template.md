@@ -13,6 +13,6 @@
 - [ ] `go test ./...` passes
 - [ ] `npm run build` passes (if the dashboard changed)
 - [ ] Added/updated tests for the change
-- [ ] Updated `README.md` / `docs/` for user-facing changes
+- [ ] Updated `README.md` / `upstream-docs/` for user-facing changes
 - [ ] No secrets, keys, binaries, or logs committed
 - [ ] I will sign the [CLA](CLA.md) when the bot asks (first-time contributors)

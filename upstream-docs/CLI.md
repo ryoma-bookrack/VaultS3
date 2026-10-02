@@ -49,7 +49,7 @@ vaults3-cli user delete alice
 vaults3-cli replication status
 vaults3-cli replication queue
 
-# Cluster operations (see docs/SCALING.md)
+# Cluster operations (see upstream-docs/SCALING.md)
 vaults3-cli bucket durability scratch --erasure=off --replicas=1  # store this bucket once
 vaults3-cli cluster status                     # members, leader, drain state
 vaults3-cli cluster join node-3 10.0.0.4:7000  # add a member (against the leader)

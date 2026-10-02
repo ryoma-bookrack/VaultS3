@@ -1,0 +1,17 @@
+---
+description: agent-step 入口规则（指向 AGENTS.md ## Agent skills 段）
+alwaysApply: true
+---
+
+# agent-step base
+
+本仓已接入 agent-step 时，**默认**遵循以下事实：
+
+1. **行为基线**：karpathy-guidelines.mdc 已 alwaysApply；本规则不再复述。
+2. **流程主干**：使用 agent-step 套件的 skill 组合完成开发任务，不存在线性的"阶段"。须先跑过 setup-agent-step。主干含 plan-to-problems（每片 capability-first decide）与 tdd-loop（开写前 verify；收尾 tdd-review）。
+3. **Problem tracker**：本地 markdown，路径 `.scratch/<problem-group>/NNN-<slug>.md`。**不要**让 Agent 主动创建 GitHub Issues / Linear / Jira 条目。Problem 须含 `## Capability decision` 方可 `ready-for-agent`。
+4. **领域术语**：根 [CONTEXT.md](../../CONTEXT.md)；变量 / 函数 / 文件名应**优先使用** `CONTEXT.md` 中的术语。
+5. **能力优先**：动手前盘点本仓 / 已装依赖 / stdlib·原生；新依赖一律 HITL。见 capability-first / tdd-review。
+6. **领域约定**：见 [docs/agents/](../../docs/agents/) 与 [AGENTS.md](../../AGENTS.md) 的 `## Agent skills` 块。
+
+完整契约见 [AGENTS.md](../../AGENTS.md) 的 `## Agent skills` 块。

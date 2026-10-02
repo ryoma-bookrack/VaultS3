@@ -12,7 +12,7 @@ import (
 )
 
 // PerBucketEngine encrypts/decrypts objects with a per-bucket data key resolved
-// from a bucketcrypto.Manager (see docs/design/per-bucket-encryption.md, phase 3).
+// from a bucketcrypto.Manager (see upstream-docs/design/per-bucket-encryption.md, phase 3).
 // Buckets without a key are stored as plaintext (opt-out). Objects written before
 // per-bucket mode — which lack the per-bucket header — are read with an optional
 // legacy global key, or as plaintext when none is configured.

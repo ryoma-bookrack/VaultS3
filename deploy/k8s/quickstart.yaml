@@ -53,7 +53,7 @@ data:
       per_key_rps: 2000
       per_key_burst: 4000
     # Optional: delegate each access decision to an endpoint you run.
-    # Deny-only and fail-closed by default. See docs/ACCESS-CONTROL.md.
+    # Deny-only and fail-closed by default. See upstream-docs/ACCESS-CONTROL.md.
     external_auth:
       enabled: false
       url: ""

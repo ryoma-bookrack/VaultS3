@@ -384,7 +384,7 @@ func New(cfg *config.Config) (*Server, error) {
 				store.Close()
 				return nil, fmt.Errorf("cluster.metadata_shards is %d, but this node's metadata store already holds object metadata "+
 					"that was written unsharded; there is no in-place migration, so either set metadata_shards back to 1 "+
-					"or start a new sharded cluster and copy the objects across (see docs/design/sharded-metadata.md)",
+					"or start a new sharded cluster and copy the objects across (see upstream-docs/design/sharded-metadata.md)",
 					cfg.Cluster.MetadataShards)
 			}
 		}
@@ -792,7 +792,7 @@ func New(cfg *config.Config) (*Server, error) {
 
 	// Per-bucket encryption keys: when a master key is configured, opting a bucket
 	// into SSE-S3 provisions a per-bucket data key (see
-	// docs/design/per-bucket-encryption.md). Reuses the encryption master key as KEK.
+	// upstream-docs/design/per-bucket-encryption.md). Reuses the encryption master key as KEK.
 	var keyMgr *bucketcrypto.Manager
 	if mk, err := cfg.Encryption.KeyBytes(); err == nil && len(mk) == 32 {
 		if km, kerr := bucketkeys.NewManager(metaStore, mk); kerr == nil {

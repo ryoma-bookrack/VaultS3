@@ -203,7 +203,7 @@ Clusters now repair replica counts on their own. Copies were only ever placed
 when an object was written, so a node lost for good left every object that had a
 copy on it one copy short, quietly, with nothing to put it back. Rebalance did
 not cover this, it moves objects whose owner changed rather than objects that are
-short of copies, and the lost-server runbook in `docs/SCALING.md` used to say
+short of copies, and the lost-server runbook in `upstream-docs/SCALING.md` used to say
 otherwise.
 
 **If you have replaced or lost a cluster node on an earlier version, run one pass

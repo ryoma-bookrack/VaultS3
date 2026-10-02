@@ -818,7 +818,7 @@ Four things to know before enabling it:
 `vaults3-cli cluster shards` shows the committed assignment and the groups running
 on the node it is talking to. The design, including the measured numbers that
 motivate it, is in
-[`docs/design/sharded-metadata.md`](design/sharded-metadata.md).
+[`upstream-docs/design/sharded-metadata.md`](design/sharded-metadata.md).
 
 ## 12. Quick reference
 

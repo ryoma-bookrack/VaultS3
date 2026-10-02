@@ -18,7 +18,7 @@ semantic-ish versioning via git tags (`vMAJOR.MINOR.PATCH`).
 
   The wrong value was written into the object's metadata, so **tags stored before
   this release are not repaired by upgrading**. Re-apply the tags on affected
-  objects, see `docs/UPGRADING.md`.
+  objects, see `upstream-docs/UPGRADING.md`.
 
   Smaller gaps in the same header closed with it. A malformed percent-encoding is
   refused with `InvalidArgument` rather than stored half-decoded, more than 10 tags
@@ -68,7 +68,7 @@ semantic-ish versioning via git tags (`vMAJOR.MINOR.PATCH`).
 - **Per-bucket encryption was broken on a cluster: most reads answered 503 and
   one replica was written in the clear.** Both reproduce on 4.4.74 and both are
   fixed here. A bucket with `ServerSideEncryption` switched on is worth checking
-  after upgrading, see `docs/UPGRADING.md`.
+  after upgrading, see `upstream-docs/UPGRADING.md`.
 
   An encrypted object stores the MD5 of its **ciphertext** as the ETag, while the
   read path hands back plaintext. The clustered read compares the two to catch a
@@ -111,11 +111,11 @@ semantic-ish versioning via git tags (`vMAJOR.MINOR.PATCH`).
   nothing, because only a per-bucket AES256 key encrypts anything in that mode.
   Every object and every replica in such a bucket was written in the clear. That
   configuration is now refused with `InvalidArgument` rather than accepted and
-  ignored. Buckets already in that state hold plaintext, see `docs/UPGRADING.md`.
+  ignored. Buckets already in that state hold plaintext, see `upstream-docs/UPGRADING.md`.
 
   SSE-KMS also no longer demands a static `encryption.key` it never uses, so the
   documented KMS configuration starts as written instead of refusing until an
-  operator invents a key. `docs/CONFIGURATION.md` now says plainly that the three
+  operator invents a key. `upstream-docs/CONFIGURATION.md` now says plainly that the three
   encryption modes are server-wide and do not combine.
 
 - **Replica repair: a cluster now restores a bucket's replica count after a node
@@ -125,7 +125,7 @@ semantic-ish versioning via git tags (`vMAJOR.MINOR.PATCH`).
   not close that gap because it answers a different question: it moves an object
   when the ring says another node owns it, and skips one whose owner never
   changed no matter how few copies survive. The recovery runbook in
-  `docs/SCALING.md` claimed rebalance restored `replica_count` after a node
+  `upstream-docs/SCALING.md` claimed rebalance restored `replica_count` after a node
   replacement. It did not, and now something does.
 
   A background scan reads metadata rather than the local disk, because metadata
@@ -357,7 +357,7 @@ semantic-ish versioning via git tags (`vMAJOR.MINOR.PATCH`).
     dashboard path, so a broken endpoint cannot lock the operator out.
   - Configurable via `VAULTS3_EXTERNAL_AUTH_URL` and
     `VAULTS3_EXTERNAL_AUTH_TOKEN`. Reported by `vaults3 diagnose` and shown in
-    the dashboard Settings page. See docs/ACCESS-CONTROL.md.
+    the dashboard Settings page. See upstream-docs/ACCESS-CONTROL.md.
 
 ### Fixed
 - Corrected the documentation for three access-control features that were listed
@@ -599,7 +599,7 @@ semantic-ish versioning via git tags (`vMAJOR.MINOR.PATCH`).
 - **Documentation-only changes no longer run CI.** Nothing in the workflow reads
   a markdown file, yet a README edit ran the full build, test, vulncheck and lint,
   and then republished `eniz1806/vaults3:latest`, handing every `:latest` user a
-  new image digest for a change to a sentence. Now that the docs live in `docs/`
+  new image digest for a change to a sentence. Now that the docs live in `upstream-docs/`
   as separate files, doc-only commits are common rather than rare.
 
 - **The server now warns when compression is enabled together with encryption at
@@ -614,7 +614,7 @@ semantic-ish versioning via git tags (`vMAJOR.MINOR.PATCH`).
   per-bucket encryption is the one case that is not total: a bucket that never
   opted in is stored as plaintext and still compresses. Fixing the layering itself
   would change the on-disk format, so it stays a separate change.
-- **The README was split into `docs/`.** It had grown to 2,019 lines and 121 KB,
+- **The README was split into `upstream-docs/`.** It had grown to 2,019 lines and 121 KB,
   and 58% of that sat under one heading: `Quick Start` held 40 subsections
   covering FUSE mounts, S3 Select, tiering, backups and rate limiting, so a
   reader who clicked "Quick Start" landed in a manual rather than a quickstart.
@@ -622,8 +622,8 @@ semantic-ish versioning via git tags (`vMAJOR.MINOR.PATCH`).
   is, how it compares, a real quickstart, a feature summary, maturity per
   subsystem, and the project promises.
 
-  Everything else moved into thirteen task-scoped guides under `docs/`, indexed
-  by [docs/README.md](docs/README.md). No prose was dropped in the move. The docs
+  Everything else moved into thirteen task-scoped guides under `upstream-docs/`, indexed
+  by [upstream-docs/README.md](upstream-docs/README.md). No prose was dropped in the move. The docs
   stay in the repository rather than on a website, so they are versioned with the
   code, travel with a clone or a fork, and can be fixed by pull request.
 
@@ -1136,7 +1136,7 @@ source, and IAM conditions are no longer ignored. README's **Upgrading to
   - The shard count is fixed once the assignment is committed, and sharding
     cannot be enabled on a cluster that already holds object metadata: the server
     refuses to start rather than leave those records where nothing reads them.
-    See `docs/design/sharded-metadata.md`.
+    See `upstream-docs/design/sharded-metadata.md`.
 - `vaults3-cli cluster shards` and `GET /api/v1/cluster/shards` report how object
   metadata is distributed: the committed assignment, and the shard groups running
   on the node answering. On a cluster that replicates all metadata they say
@@ -1144,9 +1144,9 @@ source, and IAM conditions are no longer ignored. README's **Upgrading to
   would read as "sharded and holding nothing".
 - `cluster.metadata_shards` and `cluster.metadata_replicas` settings, with
   `cluster.metadataShards` / `cluster.metadataReplicas` in the Helm chart.
-- `docs/SCALING.md` section 11a, "how many objects a cluster can hold", with the
+- `upstream-docs/SCALING.md` section 11a, "how many objects a cluster can hold", with the
   measured cost of the metadata index and what it means for planning, and
-  `docs/design/sharded-metadata.md` with the design, the measured numbers behind
+  `upstream-docs/design/sharded-metadata.md` with the design, the measured numbers behind
   it, and the constraints an adversarial review of it established.
 
 ### Changed
@@ -1955,7 +1955,7 @@ workload (list-then-write-then-read, 10,000 writes, 40 concurrent clients):
   write-quorum durability; pair it with erasure coding for disk-loss protection.
   `replica_count: 1` (default) is unchanged.
 - Documented the cluster consistency model and per-pod memory sizing in
-  docs/SCALING.md.
+  upstream-docs/SCALING.md.
 
 ## [4.4.24] - 2026-07-19
 ### Fixed
@@ -2061,7 +2061,7 @@ workload (list-then-write-then-read, 10,000 writes, 40 concurrent clients):
   - **Decommission**: guided drain + rebalance for replacing a server (removal is
     left to an explicit `cluster leave` after you confirm data has moved).
   - Adding a member in Kubernetes is already automatic — scaling the StatefulSet
-    replicas auto-joins the new pod; documented in docs/SCALING.md.
+    replicas auto-joins the new pod; documented in upstream-docs/SCALING.md.
 
 ## [4.4.16] - 2026-07-12
 ### Fixed
@@ -2330,7 +2330,7 @@ engines) plus an audit of the high-risk packages. Every fix has a regression tes
   and **crypto-shredding**, and keeps reading objects written before the switch via
   `encryption.legacy_key`. Managed from the dashboard's bucket page (enable / rotate /
   shred) and the `/api/v1/buckets/{b}/encryption` endpoints. See
-  `docs/design/per-bucket-encryption.md`. Transparent to S3 clients. Opt-out buckets
+  `upstream-docs/design/per-bucket-encryption.md`. Transparent to S3 clients. Opt-out buckets
   stay plaintext.
 - **SSE-C (customer-provided encryption keys).** Operator-blind per-object encryption:
   clients pass `x-amz-server-side-encryption-customer-*` headers. The server
@@ -2584,7 +2584,7 @@ engines) plus an audit of the high-risk packages. Every fix has a regression tes
   1000-key page), measured (not extrapolated) from 1,000 to 100,000,000 objects
   in a single prefix. All listing (versioned and non-versioned) now goes through
   this metadata index instead of an `O(n)` filesystem walk. See
-  `docs/SCALING.md` §11.
+  `upstream-docs/SCALING.md` §11.
 
 ## [4.2.9] - 2026-06-28
 ### Added
@@ -2678,7 +2678,7 @@ engines) plus an audit of the high-risk packages. Every fix has a regression tes
   - **tiering** (0% → ~39%), **backup** (0% → ~48%), **fuse** (0% → ~45%).
   - **metrics, lambda, batch, inventory, scanner, accesslog, dashboard**: baseline
     coverage for the remaining packages.
-- `docs/BENCHMARKS.md`, reproducible benchmark methodology (the `/speedtest`
+- `upstream-docs/BENCHMARKS.md`, reproducible benchmark methodology (the `/speedtest`
   endpoint, `warp` for comparative throughput, RSS measurement) + results template.
 - README **Production Readiness** section (stable vs. beta paths) and a
   refreshed competitor comparison verified against June 2026 sources.
@@ -2705,7 +2705,7 @@ engines) plus an audit of the high-risk packages. Every fix has a regression tes
 
 ## [4.2.3] - 2026-06-26
 ### Added
-- `docs/SCALING.md` operations guide: multi-disk erasure coding, multi-node
+- `upstream-docs/SCALING.md` operations guide: multi-disk erasure coding, multi-node
   Raft cluster setup, and lost-disk / lost-server / quorum-loss runbooks.
 ### Fixed
 - `POST /api/v1/heal` was a stub that only acked the request. It now invokes the

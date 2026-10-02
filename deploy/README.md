@@ -4,7 +4,7 @@
 |--------|------|----------|
 | **Helm chart** | [`helm/vaults3/`](./helm/vaults3/) | Configurable, production installs |
 | **Plain manifests** | [`k8s/quickstart.yaml`](./k8s/quickstart.yaml) | One-command single-node try-out |
-| **Docker / Compose** | [`../docs/INSTALL.md`](../docs/INSTALL.md#docker) | Single host, no Kubernetes |
+| **Docker / Compose** | [`../upstream-docs/INSTALL.md`](../upstream-docs/INSTALL.md#docker) | Single host, no Kubernetes |
 
 ## Helm (recommended)
 
@@ -36,5 +36,5 @@ Both methods deploy a **StatefulSet** with:
 - Liveness (`/health`) and readiness (`/ready`) probes
 - Non-root securityContext (UID/GID 1000)
 
-See [`docs/SCALING.md`](../docs/SCALING.md) for redundancy (erasure coding vs
+See [`upstream-docs/SCALING.md`](../upstream-docs/SCALING.md) for redundancy (erasure coding vs
 clustering) and capacity planning.

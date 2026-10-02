@@ -1,5 +1,5 @@
 // Package bucketcrypto is a prototype of per-bucket envelope encryption for
-// VaultS3 (see docs/design/per-bucket-encryption.md). A master KEK wraps a
+// VaultS3 (see upstream-docs/design/per-bucket-encryption.md). A master KEK wraps a
 // per-bucket, versioned DEK; objects are encrypted with their bucket's DEK using
 // AES-256-GCM. Buckets without a key are pass-through (opt-out). This package is
 // self-contained and not yet wired into the live storage path — it exists to

@@ -1,7 +1,7 @@
 // Package bucketkeys wires the per-bucket envelope-encryption core
 // (internal/bucketcrypto) to the metadata store: per-bucket wrapped data keys are
 // persisted in each bucket's BucketEncryptionConfig. See
-// docs/design/per-bucket-encryption.md (phase 2).
+// upstream-docs/design/per-bucket-encryption.md (phase 2).
 package bucketkeys
 
 import (

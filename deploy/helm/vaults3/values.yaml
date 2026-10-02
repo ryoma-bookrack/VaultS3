@@ -75,7 +75,7 @@ config: |
   # Delegate each access decision to an HTTP endpoint you run. Off by default.
   # Deny-only means it can narrow IAM but never widen it, and fail_open false
   # means an unreachable endpoint refuses rather than serves. The admin identity
-  # is never sent to it. See docs/ACCESS-CONTROL.md.
+  # is never sent to it. See upstream-docs/ACCESS-CONTROL.md.
   external_auth:
     enabled: false
     url: ""
@@ -115,7 +115,7 @@ service:
 # With metadataShards at 1 that means EVERY pod holds a complete copy of the
 # metadata (object data is sharded across pods, metadata is not), which is what
 # caps the object count per cluster: budget about 600 bytes of metadata per object
-# per pod. See docs/SCALING.md.
+# per pod. See upstream-docs/SCALING.md.
 # BETA: functional but newer/less battle-tested than single-node + erasure coding;
 # for maximum production durability prefer a single node with erasure coding.
 cluster:
@@ -124,7 +124,7 @@ cluster:
   # Metadata sharding. Above 1, object metadata is split across that many
   # independent Raft groups and each pod holds only the shards it is a member of,
   # so metadata capacity grows with the cluster instead of being copied to every
-  # pod. Read docs/design/sharded-metadata.md before enabling it:
+  # pod. Read upstream-docs/design/sharded-metadata.md before enabling it:
   #   - the shard count is FIXED once the cluster commits its assignment, because
   #     buckets hash to a shard. There is no resharding.
   #   - it cannot be enabled on a cluster that already holds objects; the pods

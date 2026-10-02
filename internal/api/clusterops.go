@@ -153,7 +153,7 @@ func (h *APIHandler) handleClusterJoin(w http.ResponseWriter, r *http.Request) {
 
 // handleClusterLeave handles POST /api/v1/cluster/leave {nodeId}: remove a Raft
 // member. Removing a node that still holds the only copy of data loses it — drain
-// and rebalance first (see docs/SCALING.md).
+// and rebalance first (see upstream-docs/SCALING.md).
 func (h *APIHandler) handleClusterLeave(w http.ResponseWriter, r *http.Request) {
 	if h.clusterCtl == nil {
 		writeError(w, http.StatusBadRequest, "this node is not running in cluster mode")

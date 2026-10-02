@@ -35,7 +35,7 @@ internal/
   iam/          Access keys, policies, OIDC, external authz webhook
   ...
 web/            React dashboard (Vite)
-docs/           Operator docs (see docs/SCALING.md)
+upstream-docs/           Operator docs (see upstream-docs/SCALING.md)
 ```
 
 ## Running tests

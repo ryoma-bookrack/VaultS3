@@ -155,7 +155,7 @@ func clusterShards() {
 		fmt.Println("Metadata sharding: not enabled")
 		fmt.Println("Every node holds a complete copy of the object metadata, so adding")
 		fmt.Println("nodes adds capacity for object data but not for metadata. Budget about")
-		fmt.Println("600 bytes per object, per node. See docs/SCALING.md.")
+		fmt.Println("600 bytes per object, per node. See upstream-docs/SCALING.md.")
 		return
 	}
 	m := out.ShardMap
